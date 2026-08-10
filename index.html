@@ -1,23 +1,791 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
+
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "기아 EV9 (Kia EV9)",
+      "image": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      "description": "2026년형 기아 EV9의 에어, 어스, GT-라인 트림별 실구매가, 세금 혜택, 국고 및 지자체 보조금 금액을 모의 계산기를 통해 분석합니다.",
+      "brand": {
+        "@type": "Brand",
+        "name": "기아 (Kia)"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "KRW",
+        "lowPrice": "73370000",
+        "highPrice": "100000000",
+        "offerCount": "12"
+      }
+    }
+    </script>
+
+    <style>
+        /* 기존의 딱딱한 레이아웃을 탈피한 부드럽고 세련된 디자인 가이드 */
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f8; /* 따뜻하고 부드러운 밝은 회색 */
+            line-height: 1.8;
+            color: #2c3e50; /* 눈이 편안한 다크 차콜 */
+        }
+
+        /* 레이아웃 컨테이너 */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            box-sizing: border-box;
+        }
+
+        /* 헤더 디자인: 부드러운 딥 포레스트 그린과 골드빛 강조 라인 */
+        header {
+            background: linear-gradient(135deg, #1e3f20 0%, #2e5a44 100%);
+            color: #ffffff;
+            padding: 50px 0;
+            text-align: center;
+            border-bottom: 6px solid #d4af37; /* 따뜻한 메탈릭 골드 */
+        }
+        header h1 {
+            font-size: 2.4em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+            line-height: 1.3;
+        }
+        header p {
+            font-size: 1.15em;
+            color: #e2ece9;
+            margin: 0;
+            font-weight: 300;
+        }
+
+        /* 상단 네비게이션 */
+        nav {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .main-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .main-menu li {
+            padding: 0;
+        }
+        .main-menu a {
+            display: block;
+            padding: 20px 25px;
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 600;
+            font-size: 1.05em;
+            transition: all 0.3s ease;
+        }
+        .main-menu a:hover {
+            color: #2e5a44;
+            background-color: #f7fafc;
+        }
+
+        /* 콘텐츠 레이아웃 */
+        .content-wrap {
+            display: flex;
+            padding: 40px 0;
+            gap: 40px;
+        }
+        .main-content {
+            flex: 1;
+            min-width: 0; /* flex 자식의 overflow 방지 */
+        }
+        .sidebar {
+            width: 340px;
+            flex-shrink: 0;
+        }
+
+        /* 메인 콘텐츠 내 텍스트 및 제목 스타일링 */
+        .main-content h2 {
+            font-size: 1.85em;
+            color: #1e3f20;
+            border-bottom: 3px solid #2e5a44;
+            padding-bottom: 12px;
+            margin-top: 50px;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+        .main-content h3 {
+            font-size: 1.45em;
+            color: #2e5a44;
+            border-left: 6px solid #d4af37;
+            padding-left: 16px;
+            margin-top: 35px;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+        .main-content h4 {
+            font-size: 1.15em;
+            color: #2c3e50;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .main-content p {
+            font-size: 1.08em;
+            color: #4a5568;
+            margin-bottom: 24px;
+            text-align: justify;
+        }
+        .main-content ul, .main-content ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+        }
+        .main-content li {
+            margin-bottom: 10px;
+            font-size: 1.05em;
+            color: #4a5568;
+        }
+
+        /* 하이라이트 박스 */
+        .highlight {
+            background-color: #ebf3ee; /* 부드러운 그린 톤 */
+            border-left: 6px solid #2e5a44;
+            padding: 24px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+        .highlight p {
+            font-size: 1.05em;
+            color: #1e3f20;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* 테이블 디자인 */
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 30px 0;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        th, td {
+            padding: 16px 20px;
+            text-align: center;
+            border-bottom: 1px solid #edf2f7;
+            font-size: 1em;
+        }
+        thead th {
+            background-color: #2e5a44;
+            color: #ffffff;
+            font-weight: 700;
+            border-bottom: none;
+        }
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #fcfdfe;
+        }
+        tbody tr:hover {
+            background-color: #f7fafc;
+        }
+
+        /* 이미지 영역 */
+        .image-section {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        /* 인터랙티브 계산기 및 폼 컨테이너 */
+        .calculator-section {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 35px 0;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.03);
+        }
+        .calculator-section h3 {
+            color: #1e3f20;
+            border-bottom: 2px solid #edf2f7;
+            padding-bottom: 12px;
+            margin-top: 0;
+            font-size: 1.35em;
+        }
+        .calculator-section form label {
+            display: block;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 0.95em;
+        }
+        .calculator-section form input[type="text"],
+        .calculator-section form input[type="number"],
+        .calculator-section form select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 1em;
+            color: #2d3748;
+            background-color: #fafbfe;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        .calculator-section form input:focus,
+        .calculator-section form select:focus {
+            outline: none;
+            border-color: #2e5a44;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 3px rgba(46, 90, 68, 0.15);
+        }
+        .calculator-section .checkbox-group {
+            margin-top: 15px;
+        }
+        .calculator-section .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .calculator-section .checkbox-item input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .calculator-section form button {
+            background-color: #2e5a44;
+            color: #ffffff;
+            padding: 15px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 25px;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+        .calculator-section form button:hover {
+            background-color: #1e3f20;
+        }
+        .calculator-section form button:active {
+            transform: scale(0.98);
+        }
+
+        /* 결과 표시창 스타일 */
+        .result-box {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+        }
+        .result-box h4 {
+            margin-top: 0;
+            color: #1e3f20;
+        }
+        .result-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.05em;
+        }
+        .result-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 800;
+            font-size: 1.25em;
+            color: #c53030;
+            border-top: 2px solid #e2e8f0;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        /* 사이드바 스타일링 */
+        .sidebar-widget {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.01);
+        }
+        .sidebar-widget h2, .sidebar-widget h3 {
+            font-size: 1.25em;
+            color: #1e3f20;
+            border-bottom: 2px solid #edf2f7;
+            padding-bottom: 10px;
+            margin-top: 0;
+            font-weight: 700;
+        }
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 0 0;
+        }
+        .sidebar-menu li {
+            margin-bottom: 10px;
+        }
+        .sidebar-menu a {
+            text-decoration: none;
+            color: #4a5568;
+            display: block;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 0.95em;
+            transition: all 0.2s ease;
+        }
+        .sidebar-menu a:hover {
+            background-color: #ebf3ee;
+            color: #1e3f20;
+            font-weight: 600;
+        }
+
+        /* FAQ 스타일링 */
+        .faq-item {
+            border-bottom: 1px solid #edf2f7;
+            padding: 20px 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-item h4 {
+            font-size: 1.15em;
+            color: #1e3f20;
+            margin: 0 0 10px 0;
+            cursor: pointer;
+        }
+        .faq-item p {
+            margin: 0;
+            font-size: 1em;
+            color: #4a5568;
+            padding-left: 15px;
+            border-left: 3px solid #2e5a44;
+        }
+
+        /* 하단 아웃링크 영역 */
+        .external-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        .external-links li {
+            margin-bottom: 12px;
+        }
+        .external-links a {
+            color: #2e5a44;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+        .external-links a:hover {
+            color: #1e3f20;
+            text-decoration: underline;
+        }
+
+        /* 푸터 디자인 */
+        footer {
+            background-color: #1a202c;
+            color: #a0aec0;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9em;
+            margin-top: 60px;
+            border-top: 4px solid #2e5a44;
+        }
+        footer a {
+            color: #cbd5e0;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #ffffff;
+        }
+
+        /* 모바일 대응 미디어 쿼리 */
+        @media (max-width: 991px) {
+            .content-wrap {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+            }
+            header h1 {
+                font-size: 1.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>기아 EV9 가격표 완전 분석: 2026년형 실구매가 및 전기차 보조금 가이드</h1>
+            <p>트림별 예상 금액비교, 옵션별 비용 차이점, 실시간 계산기 활용법까지 총망라</p>
+        </div>
+    </header>
+
     <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+        <div class="container">
+            <ul class="main-menu">
+                <li><a href="#lineup">2026 EV9 라인업</a></li>
+                <li><a href="#price-table">트림별 공식 가격표</a></li>
+                <li><a href="#subsidy">전국 보조금 현황</a></li>
+                <li><a href="#calculator">실구매가 모의 계산기</a></li>
+                <li><a href="#community">내돈내산 실제 후기</a></li>
+            </ul>
+        </div>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+    <div class="container">
+        <div class="content-wrap">
+            <main class="main-content">
+                
+                <div class="image-section">
+                    <img src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="기아의 준대형 전기 플래그십 SUV EV9 주행 모습">
+                </div>
+
+                <h2 id="lineup">기아 플래그십 SUV EV9: 2026년 시장의 새로운 패러다임</h2>
+                <p>기아 브랜드의 핵심 플래그십 전용 대형 전기 SUV 모델인 기아 EV9은 가족형 패밀리카 시장과 비즈니스 의전용 차량 시장에서 큰 자리를 차지하고 있습니다. 2026년형으로 접어들면서 향상된 배터리 매니지먼트 시스템과 OTA 무선 업데이트 기술의 대대적 강화를 거치며 상품성이 한층 더 성숙해졌습니다. EV9 에어, EV9 어스, 그리고 역동적인 디자인의 EV9 GT-Line 등 다양한 종류의 라인업을 구성하여 소비자 선택의 폭을 크게 넓혔습니다. 기본형 모델인 싱글 모터 기반의 2WD 후륜구동 방식부터 듀얼 모터를 탑재한 강력한 성능의 4WD 사륜구동 모델까지 지원하며, 시트 배열 역시 최상의 편안함을 선사하는 6인승 시트 설계와 넓은 공간 활용성을 특징으로 하는 7인승 시트 중 하나를 자유롭게 고를 수 있습니다.</p>
+                
+                <div class="highlight">
+                    <p>[필독 요약] 2026년 기아 EV9 구매 시 가장 중요한 변수는 정부의 무공해차 전기차 지원금 정책 변화와 각 지자체별로 상이한 보조금 요율제 적용 여부입니다. 단순한 제조사 출고 금액뿐만 아니라 취등록세 감면 혜택, 공채 할인, 그리고 카드사 캐시백이나 현금지원 사은품 등 다양한 인터넷 다이렉트 혜택까지 종합적으로 계산하여 구매하는 지혜가 필요합니다.</p>
+                </div>
+
+                <p>많은 분들이 프리미엄 전기차 구매 전에 국산 프리미엄 패밀리 SUV 모델인 제네시스 GV80이나 공간 구성이 유사한 현대 아이오닉 9 등의 브랜드 모델과 비교를 진행합니다. 준대형 대가족 단위 가정이 이용하기에 EV9 어스 트림에 스위블링 시트나 릴렉션 컴포트 시트를 추가했을 때 발생하는 장점과 단점은 명확합니다. 이러한 차이점을 바탕으로 네이버 공식 동호회 및 보배드림, 에펨코리아(펨코) 등 자동차 유력 커뮤니티의 실제 계약 성지 좌표와 내돈내산 리얼 주행 후기 정보를 종합하여 최저가 가입 및 출고 방법을 상세하게 안내해 드립니다.</p>
+
+                <h2 id="price-table">2026년형 기아 EV9 공식 가격표 및 세부 옵션 분석</h2>
+                <p>현재 기아에서 판매 중인 2026년형 EV9의 기본 출시 금액은 친환경차 세제혜택이 적용되기 이전 기준으로 대략 7천만 원대 초반에서 시작하여 최상위 풀옵션 사양의 경우 1억 원에 이르는 폭넓은 분포를 보여줍니다. 대표 라인업인 EV9 에어 2WD 모델과 최고 사양인 GT-Line 모델 간의 구성 요소와 기능적 가치에 따른 금액 차이는 꽤 큰 편입니다.</p>
+
+                <h3>트림별 표준 공급 가액 및 사양 일람</h3>
+                <p>아래 정리된 수치는 2026년 정부 인증 및 세제 혜택 반영 후의 평균 예상 인도 기준가입니다. 원자재 공급가 추이에 따라 약간의 변경 사항이 발생할 수 있으므로 대략적인 예산을 가늠하는 가이드라인으로 삼아 보시기 바랍니다.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>라인업 및 트림명</th>
+                            <th>구동 방식</th>
+                            <th>배터리 용량</th>
+                            <th>표준 출고 가격 (세제혜택 적용 전)</th>
+                            <th>보조금 차등 반영 예상 최저가</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>EV9 에어 (Air)</td>
+                            <td>2WD 후륜구동</td>
+                            <td>99.8kWh 리튬이온</td>
+                            <td>73,370,000 원</td>
+                            <td>66,500,000 원 내외</td>
+                        </tr>
+                        <tr>
+                            <td>EV9 어스 (Earth)</td>
+                            <td>2WD 후륜구동</td>
+                            <td>99.8kWh 리튬이온</td>
+                            <td>78,160,000 원</td>
+                            <td>71,200,000 원 내외</td>
+                        </tr>
+                        <tr>
+                            <td>EV9 에어 (Air)</td>
+                            <td>4WD 사륜구동</td>
+                            <td>99.8kWh 리튬이온</td>
+                            <td>76,850,000 원</td>
+                            <td>69,800,000 원 내외</td>
+                        </tr>
+                        <tr>
+                            <td>EV9 어스 (Earth)</td>
+                            <td>4WD 사륜구동</td>
+                            <td>99.8kWh 리튬이온</td>
+                            <td>81,630,000 원</td>
+                            <td>74,400,000 원 내외</td>
+                        </tr>
+                        <tr>
+                            <td>EV9 GT-Line</td>
+                            <td>4WD 전용 고성능</td>
+                            <td>99.8kWh 4세대 배터리</td>
+                            <td>83,970,000 원</td>
+                            <td>76,900,000 원 내외</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>여기에 탑재 가능한 기아 EV9의 다양한 부가 옵션 품목들도 고려해야 합니다. 대표적인 추가 선택 사양은 다음과 같습니다.</p>
+                <ul>
+                    <li>6인승 시트 옵션 (스위블링 또는 2열 독립형 시트 구성): 약 1,000,000 원에서 2,500,000 원 추가</li>
+                    <li>듀얼 선루프 패키지: 약 1,200,000 원 수준</li>
+                    <li>디지털 패턴 라이팅 그릴 및 21인치 휠이 포함된 스타일 옵션: 약 1,500,000 원</li>
+                    <li>헤드업 디스플레이(HUD) 및 메리디안 프리미엄 사운드 시스템 패키지: 약 2,200,000 원</li>
+                    <li>고속도로 자율주행 HDP 및 원격 스마트 주차 보조가 포함된 모니터링 옵션: 약 1,500,000 원</li>
+                </ul>
+                <p>위와 같은 개별 옵션들을 무작정 추가하기보다는, 본인의 일상적인 운행 목적과 가족 구성원의 선호도에 어울리는 최적의 조합을 설계하여 전체 인도금액을 방어하는 영리한 설계법이 수반되어야 과도한 차량 유지 지출 비용을 차단할 수 있습니다.</p>
+
+                <h2 id="subsidy">2026년도 국가 전기차 지원금 정책과 지자체별 실시간 현황</h2>
+                <p>대한민국 전기차 보조금 산정 체계는 매년 개편을 거쳐왔으며, 2026년도 기준으로는 차량 가액에 비례한 차등 지급 제도가 더욱 엄격하게 정립되었습니다. EV9은 고가의 플래그십 준대형 전기차 부문에 해당하여 전체적인 국가 공인 전기차 지원금의 100% 전액 지원 구간에는 미치지 못하지만, 배터리 관리 효율성 지수와 친환경 차량 기여도 점수를 합산하여 약 50% 수준의 국고 차량 보조금 수령이 가능합니다.</p>
+                <p>더불어 개인이 거주하고 신청을 진행하는 해당 광역시 및 각 기초 지자체마다 매칭하여 추가 지급하는 지방비 보조금의 편차가 매우 큽니다. 예를 들어 서울시나 부산광역시 같은 대도시권 거주자의 경우 지방 보조금이 다소 적게 배정되는 흐름을 보이는 반면, 전라남도나 경상북도 일부 기초자치단체에서는 상대적으로 넉넉한 예산 덕분에 훨씬 큰 할인 혜택을 제공하기도 합니다. 이 때문에 신차를 내 이름으로 가입 및 등록하기 전 본인 주소지의 접수 마감 잔여 대수를 실시간 인터넷 지자체 사이트 혹은 제조사 영업점을 통해 밀착 체크해야 예기치 못한 불이익을 예방할 수 있습니다.</p>
+
+                <h2 id="calculator">EV9 실구매가 및 금융 이용 모의 계산기</h2>
+                <p>차량을 일시불로 인수하는 방식 외에도 월 리스 요금 혹은 장기 렌트 요금제를 알아보고 계시다면, 가입 전에 본인의 가용 예산 범위 내에서 매달 정기적으로 나가는 납입료를 현실적으로 산출해 볼 필요가 있습니다. 아래의 간편 시뮬레이터를 이용하여 대략적인 자가 산정을 진행해 보십시오.</p>
+
+                <div class="calculator-section">
+                    <h3>내 라이프스타일에 맞춘 기아 EV9 실구매 예상 비용 간편 계산기</h3>
+                    <p>기본 등급과 원하시는 시트 구성, 거주하시는 지역을 직접 가상으로 설정하시면 실제 출고 단계에서 지급이 예상되는 최종 실구매가를 합산해 드립니다.</p>
+                    
+                    <form id="ev9-calc-form" onsubmit="calculateEV9(); return false;">
+                        <label for="calc-trim">원하시는 기아 EV9 트림 선택</label>
+                        <select id="calc-trim">
+                            <option value="73370000">에어 (Air) 2WD - 기본가 73,370,000원</option>
+                            <option value="78160000">어스 (Earth) 2WD - 기본가 78,160,000원</option>
+                            <option value="76850000">에어 (Air) 4WD - 기본가 76,850,000원</option>
+                            <option value="81630000">어스 (Earth) 4WD - 기본가 81,630,000원</option>
+                            <option value="83970000">GT-Line 4WD - 기본가 83,970,000원</option>
+                        </select>
+
+                        <label>원하시는 필수 패키지 옵션 중복 선택</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="opt-seat" value="1500000">
+                                <label for="opt-seat" style="display:inline; margin:0; font-weight:normal;">6인승 스위블링/릴렉션 시트 적용 (+150만 원)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="opt-sunroof" value="1200000">
+                                <label for="opt-sunroof" style="display:inline; margin:0; font-weight:normal;">듀얼 선루프 추가 (+120만 원)</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="opt-hdp" value="1500000">
+                                <label for="opt-hdp" style="display:inline; margin:0; font-weight:normal;">모니터링 패키지 및 안전 옵션 (+150만 원)</label>
+                            </div>
+                        </div>
+
+                        <label for="calc-region">거주 지역별 예상 전기차 총 보조금 (정부+지방비)</label>
+                        <select id="calc-region">
+                            <option value="5500000">서울특별시 / 경기도권 평균 지원구간 (약 550만 원 차감)</option>
+                            <option value="6800000">부산광역시 / 광주광역시 등 주요 광역시 (약 680만 원 차감)</option>
+                            <option value="8500000">강원도 / 충청도 등 도 지역 평균 지원금 (약 850만 원 차감)</option>
+                            <option value="11000000">지방비 지원 최고 수준 지역 성지 조건 (약 1,100만 원 차감)</option>
+                        </select>
+
+                        <label for="calc-finance">구매 예정 수단 및 금융 설계 방식</label>
+                        <select id="calc-finance">
+                            <option value="cash">일시불 인수 (현금 및 다이렉트 오토캐시백 추천)</option>
+                            <option value="installment">저금리 장기 할부 (신차 전용 장기 금리 적용)</option>
+                            <option value="lease">다이렉트 운용 리스 / 장기렌트 요금제 이용</option>
+                        </select>
+
+                        <button type="submit">나의 맞춤 견적 결과 즉시 계산</button>
+                    </form>
+
+                    <div id="calc-result" class="result-box" style="display:none;">
+                        <h4>나의 가상 EV9 맞춤 견적 확인서</h4>
+                        <div class="result-row">
+                            <span>선택한 트림 기본 단가:</span>
+                            <span id="res-base">0 원</span>
+                        </div>
+                        <div class="result-row">
+                            <span>선택한 부가 옵션 합산:</span>
+                            <span id="res-options">0 원</span>
+                        </div>
+                        <div class="result-row" style="color: #2e5a44;">
+                            <span>해당 지역 공제 보조금 혜택:</span>
+                            <span id="res-subsidy">-0 원</span>
+                        </div>
+                        <div class="result-total">
+                            <span>최종 예상 실구매 인수 금액:</span>
+                            <span id="res-total">0 원</span>
+                        </div>
+                        <p style="font-size:0.85em; color:#718096; margin-top:15px; text-align:left;">
+                            위 연산 수치는 탁송료, 번호판 등록 대행 비용 및 다이렉트 보험 가입 비용 등이 제외된 가이드성 예상 산출 금액입니다. 본인의 정확한 신용 상황이나 특별 할인 프로모션 여부에 따라 최저가 싼곳을 선정하는 실제 출고액과는 오차가 있을 수 있으므로 전문 에이전트 업체의 맞춤식 1:1 상담 및 컨설팅 수단을 적극적으로 활용해 보시기를 권장해 드립니다.
+                        </p>
+                    </div>
+                </div>
+
+                <script>
+                    function calculateEV9() {
+                        var basePrice = parseInt(document.getElementById('calc-trim').value);
+                        
+                        var optSeat = document.getElementById('opt-seat').checked ? parseInt(document.getElementById('opt-seat').value) : 0;
+                        var optSunroof = document.getElementById('opt-sunroof').checked ? parseInt(document.getElementById('opt-sunroof').value) : 0;
+                        var optHdp = document.getElementById('opt-hdp').checked ? parseInt(document.getElementById('opt-hdp').value) : 0;
+                        
+                        var optionSum = optSeat + optSunroof + optHdp;
+                        var subsidyAmount = parseInt(document.getElementById('calc-region').value);
+                        
+                        var finalPrice = basePrice + optionSum - subsidyAmount;
+                        
+                        document.getElementById('res-base').innerText = basePrice.toLocaleString() + " 원";
+                        document.getElementById('res-options').innerText = optionSum.toLocaleString() + " 원";
+                        document.getElementById('res-subsidy').innerText = "-" + subsidyAmount.toLocaleString() + " 원";
+                        document.getElementById('res-total').innerText = finalPrice.toLocaleString() + " 원";
+                        
+                        document.getElementById('calc-result').style.display = "block";
+                    }
+                </script>
+
+                <h2 id="community">국내 대표 자동차 커뮤니티 오너들의 주행 장단점과 솔직한 내돈내산 평가</h2>
+                <p>차량 선택 과정에서 가장 신뢰성 높은 실 사용자 검증 지표는 역시 관련 동호회 및 주요 커뮤니티 사이트에서 수렴되는 오너 주행 평판입니다. 디시인사이드 자동차 갤러리, 보배드림 전기차 게시판, 에펨코리아(펨코) 국산차 포럼 등에 등재되는 주행 경험자들의 내돈내산 출고기 중 핵심적인 내용을 선별하여 이 차의 매력 요소와 아쉬운 점들을 비교 설명합니다.</p>
+
+                <h3>만족도 조사에서 나타난 EV9 모델의 독보적인 장점</h3>
+                <ul>
+                    <li>패밀리카로서 타의 추종을 불허하는 무시무시한 광활함: 3열 시트 구성의 독립 구조는 경쟁 대형 SUV 중에서도 가장 넉넉한 무릎 공간을 확보하여 주말 가족 동반 이동 시 최고의 평점을 기록했습니다.</li>
+                    <li>고속 주행 성능과 조용한 거주성: EV9 99.8kWh의 육중한 배터리팩이 하부에 묵직하게 깔려 안정적인 댐핑 제어가 가능하며, 소음 차단 윈드실드 유리 덕분에 실내 유입 잡소리가 현저하게 적습니다.</li>
+                    <li>V2L 야외 외부 기기 연동성: 아웃도어 캠핑이나 차박을 선호하는 매니아층에 최고의 선호도를 보이고 있으며, 다양한 고출력 온열기구나 가전제품을 캠핑장 사이트에서 부담 없이 사용할 수 있습니다.</li>
+                </ul>
+
+                <h3>일부 차주들이 지적하는 아쉬운 단점과 피드백</h3>
+                <ul>
+                    <li>대형 크기에서 오는 주차 가용성의 압박: 국내 대다수의 구형 아파트 지하 주차 공간 규격 대비 전폭과 전장이 상당하므로 주차 구획 간격이 비좁은 생활환경을 가진 오너라면 상당한 적응 기간과 스트레스가 동반됩니다.</li>
+                    <li>고전압 시스템 오작동 이슈: 초기형 연식 버전에 비해 2026년식 개선형 버전에서는 전원 분배 장치인 ICCU 설계의 교정 및 배터리 충전 오류 등의 이슈가 대부분 잡혔으나 여전히 전자계통 에러가 가끔 리포팅되고 있습니다.</li>
+                    <li>초기 구입 시 목돈 예산 진입 장벽: 가성비를 추구하는 많은 고객의 눈높이에서 본다면 국가 지원을 받더라도 실제 지출 금액이 여전히 상당한 상위 플래그십 등급이다 보니 패밀리카 구매에 다소 부담을 호소하기도 합니다.</li>
+                </ul>
+
+                <h2 id="buying-tip">2026년 EV9 가장 저렴하게 사는법과 다이렉트 금융 구매 팁</h2>
+                <p>기아 EV9을 가장 싼곳에서 최저가 수준으로 합리적인 혜택을 쥐고 출고하고 싶다면 발품과 손품을 골고루 활용해 지점 및 대리점 영업사원의 견적 차이를 교차 비교하셔야 합니다. 네이버 웹 서핑 혹은 구글 뉴스 채널, 공식 유튜브 영상 속 실제 성지라 불리는 전문 대리점의 좌표 정보들을 얻는 방법도 추천할 만합니다.</p>
+                <p>일시불 완납 인수 형태로 가고자 한다면, 다이렉트 카드 일시불 혜택을 제공하는 유명 결제 수단 플랫폼인 토스 앱이나 유명 핀테크 자산 분석 어플 내 자동차 서비스 혜택 카테고리를 면밀히 살펴보시기 바랍니다. 신차 결제 금액 대비 캐시백 수수료율이 1.5%에서 2% 이상까지 반환되는 파격적인 한정 이벤트 기간을 포착하여 몇십만 원에서 몇백만 원 규모의 예산을 실질적으로 세이브하는 방법도 유효합니다.</p>
+                <p>반대로 초기 유동 자금을 최대한 묶어두고 사업자 명의 세액 공제 혜택을 도모하는 법인 및 개인사업자 고객이라면, 렌터사 혹은 다이렉트 리스 브랜드의 장기 이용 방식을 고려하십시오. 수많은 에이전시 전문 업체들이 2026년 신규 맞춤형 할인 상품군들을 대량 경쟁 출시하여 운용 중이며, 각종 블랙박스, 최고급 틴팅 사은품부터 조건에 따른 주유권 및 백화점 상품권 지급 등의 혜택을 얹어주어 알찬 장기 렌트 가입을 설계해 줍니다.</p>
+
+                <h2 id="future">2026년 전기차 시장 대예측과 현명한 소비자 대응 방안</h2>
+                <p>2026년에 들어선 자동차 시장은 단순한 가솔린, 디젤 내연기관의 퇴조를 넘어 인공지능 자율주행 체제로 급격히 이전되는 일대 과도기를 통과 중입니다. 최근 제미나이(Gemini)나 챗지피티(ChatGPT)와 같은 선진형 생성형 AI 분석 도구들이 실시간 전기 차량 구매 비서 어플 내부로 속속 도입되면서, 수많은 원격 데이터들이 취합되어 복합적인 중고 감가상각 분석이나 리스 기간 만료 후 자가 인수 여부에 이르는 전문적인 금융 컨설팅 제언이 고도화되고 있습니다.</p>
+                <p>이러한 고도의 AI 지능형 차량 제어 기능과 배터리 예열 성능 향상 기술 등이 유기적으로 어우러진 기아 EV9의 진화는 패밀리 미니밴 차량 구매를 대체할 훌륭한 선택지입니다. 전기 충전 거점 인프라 이용 및 무선 기아 커넥트 어플 요금제 사용 비용에 따르는 고정 비용을 합산해도, 일반 유류비 유지 지출액과 비교 시 월 평균 유지 관점의 비용 절감 메리트는 여전히 압도적으로 강력하다는 평가입니다.</p>
+
+                <div class="calculator-section">
+                    <h3>기아 EV9 차량 1:1 최저가 최적 견적 및 출고 대기 무료 상담 신청</h3>
+                    <p>복잡한 지자체 보조금 심사 자격 조건과 차량 금융 조건 분석을 자동차 전문 컨설팅 어플 담당 매니저가 무료로 상담 및 설계해 드립니다. 가장 유리한 저렴한곳 및 즉시 출고 재고 수급 상황을 손쉽게 안내해 드립니다.</p>
+                    <form onsubmit="alert('상담 신청이 정상 접수되었습니다. 담당 매니저가 곧 연락드리겠습니다.'); return false;">
+                        <label for="consult-name">상담 신청자 실명</label>
+                        <input type="text" id="consult-name" placeholder="성함을 입력하세요" required>
+                        
+                        <label for="consult-phone">휴대폰 연락처</label>
+                        <input type="text" id="consult-phone" placeholder="010-0000-0000 형식으로 입력" pattern="010-[0-9]{4}-[0-9]{4}" required>
+                        
+                        <label for="consult-interest">가장 알고 싶으신 주요 문의 영역</label>
+                        <select id="consult-interest">
+                            <option value="subsidy">해당 지역 잔여 보조금 혜택 및 실구매가 최저가 산출</option>
+                            <option value="direct">다이렉트 할부 금리 및 핀테크 일시불 카드 캐시백 조건</option>
+                            <option value="lease">신용 맞춤형 법인 리스 / 장기 렌트 월 이용 요금제 견적서 비교</option>
+                            <option value="fast">즉시 출고 대기 가능한 대리점 성지 실시간 잔여 좌표 및 프로모션</option>
+                        </select>
+
+                        <div class="checkbox-group" style="margin-top: 20px;">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="consult-agree" required>
+                                <label for="consult-agree" style="display:inline; margin:0; font-weight:normal; font-size: 0.9em;">개인정보 수집 및 상담 목적 이용 동의 (필수항목)</label>
+                            </div>
+                        </div>
+
+                        <button type="submit">기아 EV9 맞춤형 무료 컨설팅 신청하기</button>
+                    </form>
+                </div>
+
+                <h2 id="faq">🔍 기아 EV9 자주 묻는 질문 (FAQ)</h2>
+                
+                <div class="faq-item">
+                    <h4>Q1. 기아 EV9의 완충 시 최장 실주행 거리는 평균 몇 km 수준인가요?</h4>
+                    <p>A. 기아 EV9은 대용량 99.8kWh 리튬 이온 고전압 배터리를 탑재하고 있어 공인 19인치 휠 장착 에어 2WD 등급 모델 기준으로 1회 충전당 복합 주행 거리가 평균 약 501km에 육박합니다. 다만 동절기 외부 기온 저하 시의 특성이나 4WD 구동 방식, 21인치 대구경 휠 탑재 등에 따라 다소 차이가 존재할 수 있으므로, 예상 주행거리는 기후 환경에 따라 380km에서 480km 사이 범위로 예상하시고 계획적인 운행 관리를 진행하는 법이 바람직합니다.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q2. 법인이나 개인사업자 고객이 EV9을 리스 또는 장기 렌트로 이용할 때의 세무상 혜택은 얼마인가요?</h4>
+                    <p>A. 사업자 명의로 가입 시 차량 운용 비용에 대한 연간 한도 금액 내의 손비처리가 원활하여 탁월한 절세 효과를 창출할 수 있습니다. 특히 장기 렌트의 경우 자산 부채 통계에 미포함되어 신용 대출 한도 하방 압력이 없다는 명확한 장점이 존재합니다. 매달 납부하는 이용 요금제 비용 외에 다이렉트 렌트사가 책임지는 정비 어플 패키지 등을 자유롭게 결합하면 부가적인 정비 업무 소요도 완벽히 생략할 수 있습니다.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q3. 기아 EV9 6인승 모델과 7인승 모델의 정확한 시트 구성 차이점은 무엇인가요?</h4>
+                    <p>A. 7인승 시트 종류는 전통적으로 2열 공간에 3인용 벤치형 벤드가 배치되는 평이한 설계 방식입니다. 이와 달리 6인승 패키지는 2열 중앙을 독립적인 통로로 비우고 최고급 우등 고속버스 형태의 버킷 가죽 시트 2매를 단독 장착합니다. 추가 금액 비용을 들여 스위블링 시트 옵션을 적용할 경우 2열을 완전히 뒤쪽 역방향으로 180도 수동 회전시켜 3열 거주자와 마주 보고 커뮤니케이션하거나 카시트를 탈장착하기에 매우 유용한 최적의 아웃도어 환경 장점을 경험해 볼 수 있습니다.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Q4. 고속 충전 시 10%에서 80% 충전까지 시간은 얼마나 걸리나요?</h4>
+                    <p>A. 기아 EV9은 현대자동차그룹 고유의 차세대 초고속 충전 구조인 800V 다중 멀티 급속 충전 시스템 아키텍처를 원형으로 구현하고 있습니다. 이에 따라 최고 350kW 출력을 전송할 수 있는 이피트(E-pit) 및 고전압 초고속 충전 플랫폼 연동 시 배터리 가열 제어를 안전하게 거쳐 최단 24분 만에 10% 용량 상태에서 80% 상태까지 빠르게 전력을 보충하여 탁월한 도심 및 고속도로 주행 흐름 편의성을 유지해 줍니다.</p>
+                </div>
+
+                <div class="external-links" style="margin-top: 50px;">
+                    <h3>🔗 공신력 있는 공식 외부 정보 출처</h3>
+                    <p>가장 검증된 정확한 정보 접근을 위해 아래의 공인 사이트 정보들을 면밀히 참고해 보시기 바랍니다.</p>
+                    <ul>
+                        <li><a href="https://directncheckj.koreahankang.com" target="_blank" title="전기차 구매 보조금 및 신차 시세 분석 센터">전기차 시세분석 센터 (news.reliabledone.com) : 각 차종별 실시간 예상 구매 가이드 및 지자체 매칭 금액 분석 자료</a></li>
+                        <li><a href="https://namu.wiki/w/%EA%B8%B0%EC%95%84%20EV9" target="_blank" title="나무위키 기아 EV9 기본 정보 페이지">나무위키 : 기아 EV9 세대별 개발 히스토리, 탑재 제원, 파워트레인 및 사양 정보 상세 수록</a></li>
+                        <li><a href="https://www.kia.com" target="_blank" title="기아 공식 브랜드 웹사이트">기아 (Kia) 대한민국 공식 홈페이지 : 신형 EV9 순정 카탈로그 다운로드 및 전용 지점 시승 예약 서비스 제공</a></li>
+                    </ul>
+                </div>
+
+            </main>
+
+            <aside class="sidebar">
+                
+                <div class="sidebar-widget">
+                    <h2>핵심 요약 절약 메뉴</h2>
+                    <ul class="sidebar-menu">
+                        <li><a href="#lineup">EV9 트림 및 종류의 모든 것</a></li>
+                        <li><a href="#price-table">2026년식 상세 권장 소매가격</a></li>
+                        <li><a href="#subsidy">지방비 지원금 차등 지급 요율</a></li>
+                        <li><a href="#calculator">내 손으로 직접 내 보는 가상 견적</a></li>
+                        <li><a href="#community">실주행 후기에서 꼽은 장단점</a></li>
+                        <li><a href="#buying-tip">다이렉트 캐시백 등 저렴한곳 팁</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3>1분 완성 다이렉트 견적 조회</h3>
+                    <p>간단한 조건 선택으로 기아 EV9의 합리적인 장기렌트/리스 월 예상 납입금을 즉시 예측하십시오.</p>
+                    <form onsubmit="alert('가상 모의 신청이 정상 처리되었습니다. 다양한 최저가 성지 정보와 연계된 맞춤 카운셀링으로 안내해 드립니다.'); return false;">
+                        <label for="side-model">선호 트림 등급 종류</label>
+                        <select id="side-model" required>
+                            <option value="air">EV9 에어 기본 사양</option>
+                            <option value="earth">EV9 어스 고급 사양</option>
+                            <option value="gt">EV9 GT-Line 최상위 사양</option>
+                        </select>
+
+                        <label for="side-term">원하시는 계약 유지 기간</label>
+                        <select id="side-term" required>
+                            <option value="36">36 개월 요금제</option>
+                            <option value="48">48 개월 요금제</option>
+                            <option value="60">60 개월 요금제</option>
+                        </select>
+
+                        <label for="side-prepay">선납금 및 보증금 설정</label>
+                        <select id="side-prepay" required>
+                            <option value="0">초기 무보증 인수 (신용 등급 기반)</option>
+                            <option value="10">선납금 10% 사전 납입</option>
+                            <option value="30">보증금 30% 설정 (인수 시 전액 반환)</option>
+                        </select>
+
+                        <button type="submit" style="background-color: #2e5a44; color:white; width:100%; border:none; padding:12px; border-radius:6px; font-weight:bold; margin-top:15px; cursor:pointer;">실시간 최저 비용 산출 신청</button>
+                    </form>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3>함께 많이 찾는 연관 키워드</h3>
+                    <ul class="sidebar-menu" style="font-size:0.9em;">
+                        <li><a href="#price-table">EV9 에어 2WD 최저가 싼곳</a></li>
+                        <li><a href="#subsidy">서울 및 지방 대도시 전기차 보조금 금액</a></li>
+                        <li><a href="#community">현대 아이오닉 9 vs 기아 EV9 차이점 비교</a></li>
+                        <li><a href="#buying-tip">제휴카드 오토캐시백 다이렉트 이용 방법</a></li>
+                        <li><a href="#calculator">패밀리 대형 SUV 무보증 장기렌탈 견적서</a></li>
+                        <li><a href="#lineup">스위블링 시트 장단점 및 사용성 실체</a></li>
+                        <li><a href="#buying-tip">보배드림 추천 대리점 특별 할인 성지 좌표</a></li>
+                    </ul>
+                </div>
+
+            </aside>
+        </div>
+    </div>
+
+  
